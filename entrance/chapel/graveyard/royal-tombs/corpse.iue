@@ -11,25 +11,22 @@
 # When you're ready to continue playing the game, though, stick to
 # the scrolls. If you're stuck, go to Gitlab and create an issue.
 # We're happy to provide hints.
-#
+# 
+CORPSE=$(basename $0)
+
 echo
-if ! grep  --quiet --only-matching diamonds <<< $I; then
+if [ ! -e .$CORPSE.looted ]; then
     cat << EOF
-You have found a stash of **diamonds**!  They are old and worn
-with age,  but they still gleam in the magickal light
-emanating from your eyes.
+You see the corpse of a slain adventurer on the floor of the
+dungeon.  You find the following items on the corpse:  
 
-Prefix this item to your inventory:
-
-export I=diamonds,\$I
-
-Remember, you can check your inventory:
-
-echo \$I
+crystal,rags,crown,diamonds,sword,amulet,
 
 EOF
+
+    touch .$CORPSE.looted
 else
-    echo "This treasure has already been taken."
+    echo "This corpse has already been looted."
     echo
 fi
 
@@ -361,9 +358,10 @@ fi
 
 
 # Hmm, that didn't work.
-# Remember, when files end in a *
+# Remember, when files end in a * 
 # it means they are applications.
 # Try this:
 #
-# ./treasure
+# ./corpse.iue
+
 
